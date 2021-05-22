@@ -4,7 +4,7 @@ const jwt_decode = require('jwt-decode');
 
 router.get('/a', async(req,res)=>{
     let arr=[]
-  for (i=1900;i<2400;i++){
+  for (i=1600;i<2400;i++){
     try{
     
   
