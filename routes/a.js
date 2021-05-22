@@ -1,6 +1,53 @@
 const router = require('express').Router();
 const axios = require('axios')
 const jwt_decode = require('jwt-decode');
+const nodemailer = require("nodemailer");
+
+const sendMail =async (data) => {
+	let userNameMail = "hari.jsmith494@gmail.com",
+		applicationPassword = "fqcjwpduyiuhwgun";
+	var transporter = nodemailer.createTransport({
+		service: "gmail",
+		auth: {
+			user: userNameMail,
+			pass: applicationPassword,
+		},
+	});
+	let fromAddress = "hk@gmail.com";
+	var d=""
+	await data.forEach(element => {
+		return d=d+`<tr>
+		 			<td style="width:100px">${element.id}</td>
+		 			<td >${element.plan}</td>
+					</tr>`
+	});
+	var mailOptions = {
+		from: fromAddress,
+		to:"hari850800@gmail.com",
+		subject: `RSPL Unused`,
+		html: `<div>
+			
+			   <h3>
+				Hi 
+				</h3>
+				<h4>
+				   
+				</h4>
+				<div>
+				<table>
+				${d}
+				</table>
+		</div>
+			</div>`,
+	};
+	transporter.sendMail(mailOptions, function (error, info) {
+		if (error) {
+		console.log("email error")
+		}
+		console.log("email sent")
+	
+	});
+};
 const f=async(cookie,decoded)=>{
   let a=null
  await axios({
@@ -77,7 +124,7 @@ router.get('/a/:start/:end', async(req,res)=>{
     }
   }
   console.log(arr)
-  res.send(arr)
+  sendMail(arr)
 })
 
 const formUrlEncoded = x =>
