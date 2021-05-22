@@ -2,9 +2,10 @@ const router = require('express').Router();
 const axios = require('axios')
 const jwt_decode = require('jwt-decode');
 
-router.get('/a', async(req,res)=>{
+router.get('/a/:start/:end', async(req,res)=>{
     let arr=[]
-  for (i=1600;i<2400;i++){
+    console.log(req.params.start)
+  for (i=req.params.start;i<req.params.end;i++){
     try{
     
   
@@ -18,7 +19,7 @@ router.get('/a', async(req,res)=>{
               username: 'rsplf'+i,
               accountName: 'rathnaspectra',
               password: '123654',
-            
+
           })
           
         })
