@@ -76,7 +76,7 @@ const formUrlEncoded = x =>
    Object.keys(x).reduce((p, c) => p + `&${c}=${encodeURIComponent(x[c])}`, '')
 
 router.get("",(res,req)=>{
-  res.send("Hello")
+  res.status(200).json({status:"working"})
 })
         
 module.exports= router;
