@@ -30,7 +30,6 @@ const f=async(cookie,decoded)=>{
     console.log(decoded.status)
     if(s==="0/1" && decoded.status==="active"){
     a= {id:decoded.username,plan:plan2+plan3}
-     console.log(plan1)
     }
     
   })
